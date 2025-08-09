@@ -1,0 +1,17 @@
+<h1>説明書一覧</h1>
+<form method="get">
+    <input type="text" name="q" placeholder="検索" value="{{ query }}">
+    <button type="submit">検索</button>
+</form>
+<a href="{% url 'manual_upload' %}">アップロード</a>
+<hr>
+<ul>
+{% for manual in manuals %}
+    <li>
+        <a href="{{ manual.file.url }}" target="_blank">{{ manual.title }}</a>
+        - {{ manual.uploaded_at|date:"Y-m-d" }}
+    </li>
+{% empty %}
+    <li>説明書がありません。</li>
+{% endfor %}
+</ul>
